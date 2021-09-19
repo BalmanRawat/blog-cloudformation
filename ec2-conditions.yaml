@@ -1,0 +1,31 @@
+Parameters:
+  EnvType:
+    Type: String
+    Default: nonproduction
+    AllowedValues:
+      - nonproduction
+      - production
+    Description: Enter production, nonproduction. Default is nonproduction.
+Conditions:
+  IsProduction: !Equals 
+    - !Ref EnvType
+    - production
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !If
+        - IsProduction
+        - 't2.micro'
+        - 't2.small'
+      ImageId: ami-09e67e426f25ce0d7
+      SubnetId: subnet-066a074e239e6a0a3
+  ProdSecurityGroup:
+    Condition: IsProduction
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: create sg only if the env type is production
+      SecurityGroupEgress:
+      - CidrIp: 127.0.0.1/32
+        IpProtocol: "-1"
+      VpcId: vpc-0be6d92acf7a792d4

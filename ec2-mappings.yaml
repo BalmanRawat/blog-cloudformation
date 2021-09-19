@@ -1,0 +1,35 @@
+Parameters:
+  MyInstanceType:
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+      - m1.small
+      - t2.small
+    Description: Enter t2.micro, m1.small, or t2.small. Default is t2.micro.
+  AMITYpe:
+    Type: String
+    Default: Ubuntu
+    AllowedValues:
+      - Ubuntu
+      - AmazonLinux
+    Description: Enter Ubuntu or AmazonLinux. Default is Ubuntu.
+Mappings:
+  AMIIdMap: #Use the latest values
+    "us-east-1":
+      "Ubuntu": "ami-09e67e426f25ce0d7"
+      "AmazonLinux": "ami-087c17d1fe0178315"
+    "us-east-1":
+      "Ubuntu": "ami-097297e426f25ce0d7"
+      "AmazonLinux": "ami-a7297e426f25ce0d7"
+    "us-east-1":
+      "Ubuntu": "ami-097297e426f25820d7"
+      "AmazonLinux": "ami-397297e426f25820d7"
+Resources:
+  MyEC2Instance: 
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref MyInstanceType
+      ImageId: !FindInMap [ AMIIdMap, !Ref 'AWS::Region', !Ref AMITYpe ]
+      SubnetId: subnet-066a074e239e6a0a3
+      EbsOptimized:

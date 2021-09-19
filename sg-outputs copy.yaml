@@ -1,0 +1,16 @@
+Resources: 
+  ProdSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: create sg only if the env type is production
+      SecurityGroupEgress:
+      - CidrIp: 127.0.0.1/32
+        IpProtocol: "-1"
+      VpcId: vpc-0be6d92acf7a792d4
+
+Outputs:
+  SecurityGroupId:
+    Description: Id of the SecurityGroup
+    Value: !Ref ProdSecurityGroup
+    Export:
+      Name: demoSecurityGroupId

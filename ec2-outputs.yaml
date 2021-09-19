@@ -1,0 +1,9 @@
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: 't2.micro'
+      ImageId: ami-09e67e426f25ce0d7
+      SubnetId: subnet-066a074e239e6a0a3
+      SecurityGroupIds: 
+        - !ImportValue demoSecurityGroupId

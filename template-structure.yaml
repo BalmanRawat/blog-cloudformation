@@ -1,0 +1,11 @@
+---
+AWSTemplateFormatVersion: "AWS Template versions. If not provided the latest version will be used"
+Description: "Description of the template itself for documentation" 
+Metadata: "Collection of metadata object that provides additional information of the template."
+Parameters: "Values that can be passed at runtime to change the behaviour of template. It is similar to passsing argument to a function"
+Rules: "Validates a parameter or a combination of parameters passed to a template during a stack creation or stack update."
+Mappings: "A collection of static key and values that can be used to get values based on the conditions. eg. when you want to use different AMIs for different regions you can use region and key and AmiId as value"
+Conditions: "List of conditions that can be use to create certain resources based on the conditions. eg. you might not want to create all resources in your non production environment"
+Transform: "This is more advance topic of CloudFormation where CloudFormation template can be transformed from one form to another form. eg. SAM template, AWS::Include can dynamically include the CloudFormation template snippets hosted in your s3 bucket"
+Resources: "This is where you define all of your resources."
+Outputs: "List of certain attributes of the resource that you want to expose for eg. bucket-name for s3 bucket resource. Outputs can also be exported which can be imported in another stack for use. eg. export helps when you could have a VPC stack and another ec2 instance stack needs the VPCId"
